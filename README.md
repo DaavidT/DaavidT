@@ -1,11 +1,6 @@
 <h1 align="center">Hi 👋, I'm David Fernando Talavera Torres</h1>
 <h3 align="center">A Jr Computer Systems Engineer</h3>
 
-- 🔭 I’m currently working on [Invirtual Assistant](https://invirtualassistant.com/)
-
-- 🌱 I’m currently learning **DevOps**
-
-- 💬 Ask me about **React native**
 
 - 📫 How to reach me **davidtalavera6@hotmail.com**
 
