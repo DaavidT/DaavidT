@@ -1,5 +1,6 @@
 <h1 align="center">Hi 👋, I'm David Fernando Talavera Torres</h1>
 <h3 align="center">A Jr Computer Systems Engineer</h3>
+<h2> I'm currently working on an assurance company as a Jr Developer, I'm learning about Python, React </h2>
 
 
 - 📫 How to reach me **davidtalavera6@hotmail.com**
