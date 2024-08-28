@@ -29,7 +29,7 @@ jobs:
       - name: Extraer el último mensaje de commit
         id: get_commit_message
         run: |
-          last_commit_message=$(git log -1 --pretty=%B)
+          last_commit_message=$(git log -1 --all --pretty=%B)
           echo "commit_message=$last_commit_message" >> $GITHUB_ENV
 
       - name: Extraer la última versión y aumentarla
