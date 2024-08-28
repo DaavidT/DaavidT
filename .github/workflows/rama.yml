@@ -1,0 +1,47 @@
+name: Auto Merge and Version Bump
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  merge-and-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for all branches
+
+      - name: Merge main into David-t
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git checkout David-t
+          git merge --strategy-option theirs main --no-edit
+
+      - name: Reset current branch to the latest commit
+        run: |
+          git reset --hard HEAD
+
+      - name: Extract last commit message
+        id: get_commit_message
+        run: |
+          last_commit_message=$(git log -1 --pretty=%B)
+          echo "commit_message=$last_commit_message" >> $GITHUB_ENV
+
+      - name: Increment version number
+        id: bump_version
+        run: |
+          version=$(echo "${{ env.GITHUB_CONTEXT_commit_message }}" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+          IFS='.' read -r -a parts <<< "$version"
+          parts[2]=$((parts[2]+1))
+          new_version="${parts[0]}.${parts[1]}.${parts[2]}"
+          echo "new_version=$new_version" >> $GITHUB_ENV
+          
+      - name: Commit new version
+        run: |
+          git commit --allow-empty -m "Versión ${{ env.GITHUB_CONTEXT_commit_message }} (Unión de Ramas)"
+          git push origin David-t
