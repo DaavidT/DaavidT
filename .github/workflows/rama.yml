@@ -10,45 +10,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repository
+      - name: Checkout del repositorio
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Fetch all history for all branches
+          fetch-depth: 0  # Obtener todo el historial para todas las ramas
 
-      - name: Merge main into David-t
+      - name: Fusionar main en David-t
         run: |
-          git config --global user.name "GitHub Actions"
+          git config --global user.name "David Talavera"
           git config --global user.email "actions@github.com"
           git checkout David-t
           git merge --strategy-option theirs main --no-edit
 
-      - name: Reset current branch to the latest commit
+      - name: Resetear la rama actual al último commit
         run: |
-          git reset --hard HEAD
+          git reset --soft origin/David-t
 
-      - name: Extract last commit message
+      - name: Extraer el último mensaje de commit
         id: get_commit_message
         run: |
           last_commit_message=$(git log -1 --pretty=%B)
           echo "commit_message=$last_commit_message" >> $GITHUB_ENV
 
-      - name: Extract last version and bump it
+      - name: Extraer la última versión y aumentarla
         id: bump_version
         run: |
-          # Extract version part from the commit message
+          # Extraer la parte de la versión del mensaje de commit
           version=$(echo "${{ env.commit_message }}" | grep -o 'Versión [0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
           if [ -z "$version" ]; then
             echo "No se encontró ninguna versión."
             exit 1
           fi
-          # Extract the version numbers
+          # Extraer los números de la versión
           version_numbers=$(echo "$version" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
           IFS='.' read -r -a parts <<< "$version_numbers"
           parts[4]=$((parts[4]+1))
           new_version="${parts[0]}.${parts[1]}.${parts[2]}.${parts[3]}.${parts[4]}"
           echo "new_version=Versión $new_version (Unión de Ramas)" >> $GITHUB_ENV
 
-      - name: Commit new version
+      - name: Commit de la nueva versión
         run: |
           git commit --allow-empty -m "${{ env.new_version }}"
           git push origin David-t
