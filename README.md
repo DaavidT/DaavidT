@@ -25,6 +25,6 @@ Javascript and Python Developer
 
 <b>My GitHub Stats</b>
 
-![](https://raw.githubusercontent.com/DaavidT/GithubStats/refs/heads/master/generated/languages.svg#gh-dark-mode-only)
+![](https://raw.githubusercontent.com/DaavidT/GithubStats/refs/heads/master/generated/languages.svg?token=GHSAT0AAAAAAC6VBWT64MUE6LMZYITQHHX4Z74SYGA#gh-dark-mode-only)
 
 <a href="http://www.github.com/DaavidT"><img src="https://github-readme-stats.vercel.app/api?username=DaavidT&show_icons=true&hide=stars,issues,contribs&count_private=true&title_color=ef4444&text_color=ffffff&icon_color=000000&bg_color=171717&hide_border=true&show_icons=true" alt="DaavidT's GitHub stats" /></a>
